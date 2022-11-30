@@ -1,0 +1,6 @@
+{
+    "createReactTSXComponent.stylesFormat": "TailwindCSSParser",
+    "createReactTSXComponent.useArrowFunctionComponent": true,
+    "createReactTSXComponent.useReactFC": true,
+    "createReactTSXComponent.useReactImport": false
+}
