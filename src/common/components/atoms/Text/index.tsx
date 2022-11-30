@@ -7,7 +7,7 @@ export const Text: React.FC<TextProps> = (props) => {
     return (
         <StyledComponent
             component={NativeText}
-            className="text-gray-900"
+            className="text-gray-900 font-sans"
             {...props}
         />
     )
