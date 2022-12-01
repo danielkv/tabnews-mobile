@@ -11,6 +11,9 @@ module.exports = function (api) {
                     alias: {
                         '@components': './src/common/components',
                         '@types': './src/common/types',
+                        '@models': './src/common/models',
+                        '@useCases': './src/domain/useCases',
+                        '@view': './src/view',
                     },
                     extensions: ['.js', '.jsx', '.ts', '.tsx'],
                 },

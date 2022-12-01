@@ -1,13 +1,7 @@
-import { View } from 'react-native'
-
-import { Text } from '@components/atoms/Text'
+import { HomeView } from '@view/home/view'
 
 const App: React.FC = () => {
-    return (
-        <View className="flex-1 items-center justify-center bg-black">
-            <Text>test</Text>
-        </View>
-    )
+    return <HomeView />
 }
 
 export default App

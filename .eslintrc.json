@@ -36,6 +36,7 @@
         "import/no-unresolved": "error",
         "react/react-in-jsx-scope": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/strict-boolean-expressions": 0,
         "react/function-component-definition": [
             "error",
             {
