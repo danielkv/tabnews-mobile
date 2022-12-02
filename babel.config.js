@@ -13,6 +13,7 @@ module.exports = function (api) {
                         '@types': './src/common/types',
                         '@models': './src/common/models',
                         '@utils': './src/common/utils',
+                        '@common': './src/common',
                         '@useCases': './src/domain/useCases',
                         '@assets': './assets',
                         '@view': './src/view',

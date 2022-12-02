@@ -1,11 +1,10 @@
-import { prepareApp } from '@utils/prepareApp'
-
 import { Children, Layout } from 'expo-router'
-import * as SplashScreen from 'expo-splash-screen'
+
 import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 import { Header } from '@components/organisms/Header'
+import { prepareApp } from '@utils/prepareApp'
 
 const layout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)
@@ -18,7 +17,7 @@ const layout: React.FC = () => {
 
     return (
         <Layout>
-            <View className="flex-col">
+            <View className="flex-col flex-1">
                 <Header />
                 <Children />
             </View>

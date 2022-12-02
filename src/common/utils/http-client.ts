@@ -1,8 +1,10 @@
 import axios from 'axios'
 import Constants from 'expo-constants'
 
+const baseURL = Constants.expoConfig?.extra?.API_BASE_URL || 'http://localhost'
+
 const httpClient = axios.create({
-    baseURL: Constants.expoConfig?.extra?.API_BASE_URL || 'http://localhost',
+    baseURL,
 })
 
 export default httpClient

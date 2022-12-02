@@ -1,10 +1,10 @@
 import Constants from 'expo-constants'
 import { StatusBar } from 'expo-status-bar'
+
 import { View } from 'react-native'
 
+import Logo from '@assets/brand/light-outlined.svg'
 import { Text } from '@components/atoms/Text'
-
-import Logo from '../../../../../assets/brand/light-outlined.svg'
 
 export const Header: React.FC = () => {
     const statusBarPadding = +Constants.statusBarHeight + 3

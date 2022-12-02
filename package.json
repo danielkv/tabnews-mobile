@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"axios": "^1.2.0",
+		"dayjs": "^1.11.6",
 		"dotenv": "^16.0.3",
 		"expo": "~47.0.8",
 		"expo-constants": "~14.0.2",

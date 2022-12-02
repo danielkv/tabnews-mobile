@@ -5,11 +5,10 @@
 	"printWidth": 80,
 	"singleQuote": true,
 	"importOrder": [
-		"^[a-zA-Z](.*)$",
-		"^@types/(.*)$",
-		"^@components/(.*)$",
-		"^../(.*)$",
-		"^[./]"
+		"^react",
+		"^@(.*)$",
+		"^../",
+		"^./"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true
