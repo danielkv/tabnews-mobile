@@ -1,7 +1,13 @@
+import { RouteComponent } from '@types/routes'
+import { ListContentStrategy } from '@useCases/content/listContents'
 import { HomeView } from '@view/home/view'
 
-const App: React.FC = () => {
-    return <HomeView />
+interface IndexRouteProps {
+    contentsListStrategy?: ListContentStrategy
 }
 
-export default App
+const IndexRoute: RouteComponent<IndexRouteProps> = ({ route }) => {
+    return <HomeView contentListStrategy={route.params?.contentsListStrategy} />
+}
+
+export default IndexRoute

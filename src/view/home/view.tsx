@@ -13,9 +13,10 @@ export interface HomeViewProps {
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
-    const { contents, loading } = useHomeModelView(contentListStrategy)
+    const { contents, loading, loadNextPage } =
+        useHomeModelView(contentListStrategy)
 
-    if (loading)
+    if (loading && !contents?.length)
         return (
             <View className="mt-4">
                 <ActivityIndicator size={30} />
@@ -25,7 +26,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
     return (
         <FlatList<Content>
             data={contents?.flat()}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item, index) => `${item.id}${index}`}
             renderItem={({ item, index }) => (
                 <ContentItem
                     className="my-3"
@@ -37,6 +38,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
                 paddingVertical: theme.spacing[4],
                 paddingHorizontal: theme.spacing[6],
             }}
+            onEndReached={loadNextPage}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={loading ? <ActivityIndicator /> : null}
         />
     )
 }

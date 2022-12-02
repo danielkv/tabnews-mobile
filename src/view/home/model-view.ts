@@ -6,13 +6,11 @@ import {
     listContentsUseCase,
 } from '@useCases/content/listContents'
 
-export const useHomeModelView = (
-    contentListStrategy: ListContentStrategy = 'new'
-) => {
+export const useHomeModelView = (contentListStrategy?: ListContentStrategy) => {
     const getKey: SWRInfiniteKeyLoader = (index, previousPageData) => {
-        if (previousPageData && !previousPageData.length) return null // atingiu o fim
+        if (previousPageData && !previousPageData.length) return null
 
-        return [index, 10, contentListStrategy]
+        return [index + 1, 30, contentListStrategy]
     }
 
     const {
@@ -23,11 +21,18 @@ export const useHomeModelView = (
         size: page,
     } = useSWRInfinite<Content[], Error>(getKey, listContentsUseCase)
 
+    function loadNextPage() {
+        if (isValidating) return
+
+        const nextPage = page + 1
+
+        setPage(nextPage)
+    }
+
     return {
         loading: isValidating,
         error,
         contents: data,
-        setPage,
-        page,
+        loadNextPage,
     }
 }
