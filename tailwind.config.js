@@ -13,6 +13,12 @@ module.exports = {
                 900: '#121518',
             },
         },
+        fontFamily: {
+            regular: 'SF-Pro-Display-Regular',
+            regularItalic: 'SF-Pro-Display-RegularItalic',
+            bold: 'SF-Pro-Display-Bold',
+            boldItalic: 'SF-Pro-Display-BoldItalic',
+        },
     },
     plugins: [],
 }

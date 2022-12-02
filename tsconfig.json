@@ -8,7 +8,9 @@
             "@components/*": ["src/common/components/*"],
             "@types/*": ["src/common/types/*"],
             "@models/*": ["src/common/models/*"],
+            "@utils/*": ["src/common/utils/*"],
             "@useCases/*": ["src/domain/useCases/*"],
+            "@assets/*": ["assets/*"],
             "@view/*": ["src/view/*"]
         }
     }

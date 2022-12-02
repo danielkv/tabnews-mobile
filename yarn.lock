@@ -4270,6 +4270,14 @@ expo-splash-screen@^0.16.2:
     "@expo/configure-splash-screen" "^0.6.0"
     "@expo/prebuild-config" "~5.0.0"
 
+expo-splash-screen@~0.17.5:
+  version "0.17.5"
+  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.17.5.tgz#a18dc59c1cc28ebbedbf0a7529a419d18ab0b311"
+  integrity sha512-ejSO78hwHXz8T9u8kh8t4r6CR4h70iBvA65gX8GK+dYxZl6/IANPbIb2VnUpND9vqfW+JnkDw+ZFst+gDnkpcQ==
+  dependencies:
+    "@expo/configure-splash-screen" "^0.6.0"
+    "@expo/prebuild-config" "5.0.7"
+
 expo-status-bar@~1.4.2:
   version "1.4.2"
   resolved "https://registry.npmjs.org/expo-status-bar/-/expo-status-bar-1.4.2.tgz"
