@@ -20,9 +20,9 @@ const RawContentItem: React.FC<StyledProps<ContenteItemProps>> = ({
     const tabcoinsLabel = content.tabcoins > 1 ? 'tabcoins' : 'tabcoin'
     const comentsLabel =
         content.children_deep_count > 1 ? 'comments' : 'comment'
-    const createdLabel = dayjs(content.created_at).calendar()
+    const createdLabel = dayjs(content.created_at).fromNow()
 
-    const titleClassName = 'font-bold'
+    const titleClassName = 'font-bold text-sm'
     const descriptionClassName = 'text-xs text-gray-300'
 
     return (
@@ -35,11 +35,9 @@ const RawContentItem: React.FC<StyledProps<ContenteItemProps>> = ({
                     <Text className={titleClassName}>{content.title}</Text>
                 </View>
                 <View className="flex-row gap-x-3 items-center">
-                    <View className="">
-                        <Text
-                            className={descriptionClassName}
-                        >{`${content.tabcoins} ${tabcoinsLabel}`}</Text>
-                    </View>
+                    <Text
+                        className={descriptionClassName}
+                    >{`${content.tabcoins} ${tabcoinsLabel}`}</Text>
                     <DotSeparator />
                     <Text
                         className={descriptionClassName}
