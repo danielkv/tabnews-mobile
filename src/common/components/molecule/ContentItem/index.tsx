@@ -1,7 +1,9 @@
 import dayjs from 'dayjs'
+import { StyledProps, styled } from 'nativewind'
 
 import { View } from 'react-native'
 
+import { DotSeparator } from '@components/atoms/DotSeparator'
 import { Text } from '@components/atoms/Text'
 import { Content } from '@models/content'
 
@@ -10,9 +12,10 @@ export interface ContenteItemProps {
     content: Content
 }
 
-export const ContentItem: React.FC<ContenteItemProps> = ({
+const RawContentItem: React.FC<StyledProps<ContenteItemProps>> = ({
     content,
     itemNumber,
+    ...rest
 }) => {
     const tabcoinsLabel = content.tabcoins > 1 ? 'tabcoins' : 'tabcoin'
     const comentsLabel =
@@ -23,27 +26,34 @@ export const ContentItem: React.FC<ContenteItemProps> = ({
     const descriptionClassName = 'text-xs text-gray-300'
 
     return (
-        <View className="flex-row gap-2 flex-1">
-            <Text className={`${titleClassName} w-5 text-right`}>
+        <View className="flex-row gap-4" {...rest}>
+            <Text className={`${titleClassName} w-9  text-right`}>
                 {itemNumber}.
             </Text>
             <View className="flex-1">
                 <View className="flex-row">
                     <Text className={titleClassName}>{content.title}</Text>
                 </View>
-                <View className="flex-row gap-3 ">
-                    <Text
-                        className={descriptionClassName}
-                    >{`${content.tabcoins} ${tabcoinsLabel}`}</Text>
+                <View className="flex-row gap-x-3 items-center">
+                    <View className="">
+                        <Text
+                            className={descriptionClassName}
+                        >{`${content.tabcoins} ${tabcoinsLabel}`}</Text>
+                    </View>
+                    <DotSeparator />
                     <Text
                         className={descriptionClassName}
                     >{`${content.children_deep_count} ${comentsLabel}`}</Text>
+                    <DotSeparator />
                     <Text className={descriptionClassName}>
                         {content.owner_username}
                     </Text>
+                    <DotSeparator />
                     <Text className={descriptionClassName}>{createdLabel}</Text>
                 </View>
             </View>
         </View>
     )
 }
+
+export const ContentItem = styled<ContenteItemProps>(RawContentItem)

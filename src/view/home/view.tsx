@@ -1,5 +1,6 @@
 import { FlatList, View } from 'react-native'
 
+import { theme } from '@common/theme'
 import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
 import { ContentItem } from '@components/molecule/ContentItem'
 import { Content } from '@models/content'
@@ -22,14 +23,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
         )
 
     return (
-        <View className="flex-1">
-            <FlatList<Content>
-                data={contents?.flat()}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item, index }) => (
-                    <ContentItem itemNumber={index + 1} content={item} />
-                )}
-            />
-        </View>
+        <FlatList<Content>
+            data={contents?.flat()}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+                <ContentItem
+                    className="my-3"
+                    itemNumber={index + 1}
+                    content={item}
+                />
+            )}
+            contentContainerStyle={{
+                paddingVertical: theme.spacing[4],
+                paddingHorizontal: theme.spacing[6],
+            }}
+        />
     )
 }

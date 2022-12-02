@@ -17,9 +17,11 @@ const layout: React.FC = () => {
 
     return (
         <Layout>
-            <View className="flex-col flex-1">
+            <View className="flex-col flex-1 ">
                 <Header />
-                <Children />
+                <View className="flex-1">
+                    <Children />
+                </View>
             </View>
         </Layout>
     )

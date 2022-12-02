@@ -28,6 +28,28 @@ const theme = {
         bold: 'SF-Pro-Display-Bold',
         boldItalic: 'SF-Pro-Display-BoldItalic',
     },
+    spacing: {
+        1: 1,
+        2: 2,
+        3: 4,
+        4: 6,
+        5: 8,
+        6: 10,
+        7: 14,
+        8: 18,
+        9: 22,
+        10: 26,
+        11: 30,
+        12: 34,
+        14: 38,
+        16: 42,
+        20: 46,
+        24: 50,
+        28: 58,
+        32: 56,
+        36: 64,
+        40: 72,
+    },
 }
 
 module.exports = {
