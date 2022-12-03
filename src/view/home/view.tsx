@@ -6,7 +6,7 @@ import { ContentItem } from '@components/molecule/ContentItem'
 import { Content } from '@models/content'
 import { ListContentStrategy } from '@useCases/content/listContents'
 
-import { useHomeModelView } from './model-view'
+import { useHomeViewModel } from './view-model'
 
 export interface HomeViewProps {
     contentListStrategy?: ListContentStrategy
@@ -14,7 +14,7 @@ export interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
     const { contents, loading, loadNextPage } =
-        useHomeModelView(contentListStrategy)
+        useHomeViewModel(contentListStrategy)
 
     if (loading && !contents?.length)
         return (

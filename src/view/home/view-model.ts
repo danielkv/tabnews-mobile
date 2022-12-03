@@ -6,7 +6,7 @@ import {
     listContentsUseCase,
 } from '@useCases/content/listContents'
 
-export const useHomeModelView = (contentListStrategy?: ListContentStrategy) => {
+export const useHomeViewModel = (contentListStrategy?: ListContentStrategy) => {
     const getKey: SWRInfiniteKeyLoader = (index, previousPageData) => {
         if (previousPageData && !previousPageData.length) return null
 

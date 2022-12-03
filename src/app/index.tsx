@@ -1,4 +1,4 @@
-import { RouteComponent } from '@types/routes'
+import { RouteComponent } from '@common/interfaces/routes'
 import { ListContentStrategy } from '@useCases/content/listContents'
 import { HomeView } from '@view/home/view'
 
