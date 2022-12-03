@@ -4,17 +4,11 @@ import { theme } from '@common/theme'
 import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
 import { ContentItem } from '@components/molecule/ContentItem'
 import { Content } from '@models/content'
-import { ListContentStrategy } from '@useCases/content/listContents'
 
 import { useHomeViewModel } from './view-model'
 
-export interface HomeViewProps {
-    contentListStrategy?: ListContentStrategy
-}
-
-export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
-    const { contents, loading, loadNextPage } =
-        useHomeViewModel(contentListStrategy)
+export const HomeView: React.FC = () => {
+    const { contents, loading, loadNextPage, handleContentPress } = useHomeViewModel()
 
     if (loading && !contents?.length)
         return (
@@ -30,6 +24,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ contentListStrategy }) => {
             renderItem={({ item, index }) => (
                 <ContentItem
                     className="my-3"
+                    onPress={handleContentPress}
                     itemNumber={index + 1}
                     content={item}
                 />

@@ -8,7 +8,7 @@ import { Text } from '@components/atoms/Text'
 export interface HeaderLinkProps {
     children: string
     selected?: boolean
-    onPress?: () => void
+    onPress?(): void
 }
 
 const RawHeaderLink: React.FC<StyledProps<HeaderLinkProps>> = ({

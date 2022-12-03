@@ -1,30 +1,24 @@
-import { Children, Layout, useHref } from 'expo-router'
+import { Children, Layout } from 'expo-router'
 
 import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
-import { Header } from '@components/organisms/Header'
+import { Header } from '@components/organisms/Header/view'
 import { prepareApp } from '@utils/prepareApp'
 
-const layout: React.FC = (props) => {
+const layout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)
 
     useEffect(() => {
         prepareApp().then(() => setLoadedApp(true))
     })
 
-    const { params, pathname } = useHref()
-
     if (!loadedApp) return null
-
-    const selectedLink =
-        ['/', ''].includes(pathname) &&
-        (params?.contentsListStrategy || 'relevant')
 
     return (
         <Layout>
             <View className="flex-col flex-1 ">
-                <Header selectedLink={selectedLink} />
+                <Header />
                 <View className="flex-1">
                     <Children />
                 </View>

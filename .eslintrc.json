@@ -16,13 +16,7 @@
         "tsconfigRootDir": "./"
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "react",
-        "react-hooks",
-        "@typescript-eslint",
-        "import",
-        "prettier"
-    ],
+    "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "prettier"],
     "settings": {
         "react": {
             "version": "detect"
@@ -40,6 +34,7 @@
         "@typescript-eslint/promise-function-async": 0,
         "@typescript-eslint/no-floating-promises": 0,
         "react/prop-types": 0,
+        "@typescript-eslint/method-signature-style": ["error", "method"],
         "react/function-component-definition": [
             "error",
             {

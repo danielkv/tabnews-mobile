@@ -6,8 +6,8 @@ interface IndexRouteProps {
     contentsListStrategy?: ListContentStrategy
 }
 
-const IndexRoute: RouteComponent<IndexRouteProps> = ({ route }) => {
-    return <HomeView contentListStrategy={route.params?.contentsListStrategy} />
+const IndexRoute: RouteComponent<IndexRouteProps> = () => {
+    return <HomeView />
 }
 
 export default IndexRoute
