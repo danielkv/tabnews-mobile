@@ -66,6 +66,11 @@ const theme = {
         36: 64,
         40: 72,
     },
+    extend: {
+        borderWidth: {
+            1: '1px',
+        },
+    },
 }
 
 module.exports = {
