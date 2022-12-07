@@ -1,4 +1,4 @@
-import { useHref, useLink } from 'expo-router'
+import { useHref } from 'expo-router'
 
 import { ViewRouterHook } from '@common/interfaces/app'
 
