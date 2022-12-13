@@ -2,8 +2,8 @@ import { FlatList, View } from 'react-native'
 
 import { theme } from '@common/theme'
 import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
-import { ContentItem } from '@components/molecule/ContentItem'
-import { Content } from '@models/content'
+import { ContentListItem } from '@components/molecule/ContentListItem'
+import { Post } from '@models/content'
 
 import { useHomeViewModel } from './view-model'
 
@@ -18,11 +18,11 @@ export const HomeView: React.FC = () => {
         )
 
     return (
-        <FlatList<Content>
+        <FlatList<Post>
             data={contents?.flat()}
             keyExtractor={(item, index) => `${item.id}${index}`}
             renderItem={({ item, index }) => (
-                <ContentItem
+                <ContentListItem
                     className="my-3"
                     onPress={handleContentPress}
                     itemNumber={index + 1}

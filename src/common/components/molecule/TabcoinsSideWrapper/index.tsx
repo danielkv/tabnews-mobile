@@ -6,22 +6,22 @@ import FeatherIcon from '@expo/vector-icons/Feather'
 
 export interface TabcoinsSideWrapperProps {
     tabcoins: number
-    onPressUp(): void
-    onPressDown(): void
+    onPressUpvote(): void
+    onPressDownvote(): void
 }
 
 export const TabcoinsSideWrapper: React.FC<TabcoinsSideWrapperProps> = ({
     tabcoins,
-    onPressUp,
-    onPressDown,
+    onPressUpvote,
+    onPressDownvote,
 }) => {
     return (
         <View className="items-center gap-y-5">
-            <TouchableOpacity onPress={onPressUp}>
+            <TouchableOpacity onPress={onPressUpvote}>
                 <FeatherIcon name="chevron-up" size={16} color={colors.gray[300]} />
             </TouchableOpacity>
             <Text className="text-blue-500 text-sm">{tabcoins}</Text>
-            <TouchableOpacity onPress={onPressDown}>
+            <TouchableOpacity onPress={onPressDownvote}>
                 <FeatherIcon name="chevron-down" size={16} color={colors.gray[300]} />
             </TouchableOpacity>
             <View className="border-l-1 border-gray-50 flex-1" />

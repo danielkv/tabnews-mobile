@@ -1,11 +1,11 @@
-import { Content } from '@models/content'
+import { Post } from '@models/content'
 import httpClient from '@utils/http-client'
 
-export async function getContentUseCase(user: string, slug: string): Promise<Content> {
+export async function getContentUseCase(author: string, slug: string): Promise<Post> {
     const path = 'contents'
-    const endpoint = `${path}/${user}/${slug}`
+    const endpoint = `${path}/${author}/${slug}`
 
-    const response = await httpClient.get<Content>(endpoint)
+    const response = await httpClient.get<Post>(endpoint)
 
     return response.data
 }

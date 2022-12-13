@@ -1,7 +1,7 @@
 import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite'
 
 import { ViewModelHook } from '@common/interfaces/app'
-import { Content } from '@models/content'
+import { Post } from '@models/content'
 import { listContentsUseCase } from '@useCases/content/listContents'
 
 import { useHomeRouter } from './home-router'
@@ -9,9 +9,9 @@ import { useHomeRouter } from './home-router'
 export interface HomeViewModelReturn {
     loading: boolean
     error?: Error
-    contents?: Content[][]
+    contents?: Post[][]
     loadNextPage(): void
-    handleContentPress(content: Content): void
+    handleContentPress(content: Post): void
 }
 
 export const useHomeViewModel: ViewModelHook<HomeViewModelReturn> = () => {
@@ -29,7 +29,7 @@ export const useHomeViewModel: ViewModelHook<HomeViewModelReturn> = () => {
         error,
         setSize: setPage,
         size: page,
-    } = useSWRInfinite<Content[], Error>(getKey, listContentsUseCase)
+    } = useSWRInfinite<Post[], Error>(getKey, listContentsUseCase)
 
     function loadNextPage() {
         if (isValidating) return
@@ -39,7 +39,7 @@ export const useHomeViewModel: ViewModelHook<HomeViewModelReturn> = () => {
         setPage(nextPage)
     }
 
-    function handleContentPress(content: Content) {
+    function handleContentPress(content: Post) {
         openContent(content.owner_username, content.slug)
     }
 

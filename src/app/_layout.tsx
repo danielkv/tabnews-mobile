@@ -3,8 +3,8 @@ import { Children, Layout } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
-import { Header } from '@components/organisms/Header/view'
 import { prepareApp } from '@utils/prepareApp'
+import { Header } from '@view/Header/view'
 
 const layout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)

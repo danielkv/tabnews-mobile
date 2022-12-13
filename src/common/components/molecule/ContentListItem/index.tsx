@@ -6,15 +6,15 @@ import { Pressable, View } from 'react-native'
 import { theme } from '@common/theme'
 import { DotSeparator } from '@components/atoms/DotSeparator'
 import { Text } from '@components/atoms/Text'
-import { Content } from '@models/content'
+import { Post } from '@models/content'
 
 export interface ContenteItemProps {
     itemNumber: number
-    content: Content
-    onPress?(content: Content): void
+    content: Post
+    onPress?(content: Post): void
 }
 
-const RawContentItem: React.FC<StyledProps<ContenteItemProps>> = ({
+const RawContentListItem: React.FC<StyledProps<ContenteItemProps>> = ({
     content,
     itemNumber,
     onPress,
@@ -62,4 +62,4 @@ const RawContentItem: React.FC<StyledProps<ContenteItemProps>> = ({
     )
 }
 
-export const ContentItem = styled<ContenteItemProps>(RawContentItem)
+export const ContentListItem = styled<ContenteItemProps>(RawContentListItem)
