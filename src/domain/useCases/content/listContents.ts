@@ -1,4 +1,4 @@
-import { Post } from '@models/content'
+import { Post } from '@models/post'
 import httpClient from '@utils/http-client'
 
 export type ListContentStrategy = 'new' | 'old' | 'relevant'

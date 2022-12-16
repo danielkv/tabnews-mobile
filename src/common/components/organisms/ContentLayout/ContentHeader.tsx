@@ -15,7 +15,7 @@ export const ContentHeader: React.FC<ContentHeaderProps> = ({ content }) => {
     const createdLabel = dayjs(content.created_at).fromNow()
 
     return (
-        <View className="items-start ml-5 mb-6">
+        <View className="items-start mb-6">
             <View className="flex-row items-center gap-6 ">
                 <Badge>{content.owner_username}</Badge>
                 <Text className="text-sm">{createdLabel}</Text>

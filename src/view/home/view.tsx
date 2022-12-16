@@ -1,9 +1,10 @@
-import { FlatList, View } from 'react-native'
+import { View } from 'react-native'
 
 import { theme } from '@common/theme'
 import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
-import { ContentListItem } from '@components/molecule/ContentListItem'
-import { Post } from '@models/content'
+import { ContentListItem } from '@components/organisms/ContentListItem'
+import { Post } from '@models/post'
+import { FlashList } from '@shopify/flash-list'
 
 import { useHomeViewModel } from './view-model'
 
@@ -18,9 +19,10 @@ export const HomeView: React.FC = () => {
         )
 
     return (
-        <FlatList<Post>
+        <FlashList<Post>
             data={contents?.flat()}
             keyExtractor={(item, index) => `${item.id}${index}`}
+            estimatedItemSize={42}
             renderItem={({ item, index }) => (
                 <ContentListItem
                     className="my-3"
@@ -31,7 +33,6 @@ export const HomeView: React.FC = () => {
             )}
             contentContainerStyle={{
                 paddingVertical: theme.spacing[4],
-                paddingHorizontal: theme.spacing[6],
             }}
             onEndReached={loadNextPage}
             onEndReachedThreshold={0.1}

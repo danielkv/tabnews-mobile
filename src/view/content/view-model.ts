@@ -2,6 +2,7 @@ import useSWR from 'swr'
 
 import { ViewModelHook } from '@common/interfaces/app'
 import { Comment } from '@models/comment'
+import { ContentBase } from '@models/contentBase'
 import { Post } from '@models/post'
 import { ContentVoteType, contentVote } from '@useCases/content/contentVote'
 import { getCommentsUseCase } from '@useCases/content/getComments'
@@ -13,13 +14,14 @@ export interface ContentViewModelReturn {
     content?: Post
     comments: Comment[]
     loading: boolean
+    error?: Error
     onPressVote(type: ContentVoteType, author: string, slug: string): Promise<void>
     onPressVoteComment(type: ContentVoteType, author: string, slug: string): Promise<void>
-    error?: Error
+    onPressComment(content: ContentBase): void
 }
 
 export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => {
-    const { user, slug } = useContentRouter()
+    const { user, slug, openContent } = useContentRouter()
 
     const {
         data: content,
@@ -61,6 +63,11 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
         )
     }
 
+    function onPressComment(content: ContentBase) {
+        console.log(content)
+        openContent(content.owner_username, content.slug)
+    }
+
     return {
         content,
         comments: comments ?? [],
@@ -68,5 +75,6 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
         error: contentError ?? commentsError,
         onPressVoteComment,
         onPressVote,
+        onPressComment,
     }
 }

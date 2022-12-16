@@ -10,6 +10,7 @@
 		"lint": "eslint ./src"
 	},
 	"dependencies": {
+		"@shopify/flash-list": "1.3.1",
 		"axios": "^1.2.0",
 		"dayjs": "^1.11.6",
 		"dotenv": "^16.0.3",

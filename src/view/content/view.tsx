@@ -7,7 +7,7 @@ import { ContentLayout } from '@components/organisms/ContentLayout'
 import { useContentViewModel } from './view-model'
 
 const ContentView: React.FC = () => {
-    const { content, loading, onPressVote, comments } = useContentViewModel()
+    const { content, loading, onPressVote, comments, onPressComment } = useContentViewModel()
 
     if (!content && loading) return <ActivityIndicator />
 
@@ -16,7 +16,7 @@ const ContentView: React.FC = () => {
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
             <View>
-                <ContentLayout onPressVote={onPressVote} content={content} />
+                <ContentLayout main onPressVote={onPressVote} content={content} />
 
                 <View>
                     {comments.map((comment) => (
@@ -24,6 +24,7 @@ const ContentView: React.FC = () => {
                             key={comment.id}
                             content={comment}
                             onPressVote={async () => {}}
+                            onPress={onPressComment}
                         />
                     ))}
                 </View>

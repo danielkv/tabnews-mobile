@@ -1,7 +1,7 @@
 import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite'
 
 import { ViewModelHook } from '@common/interfaces/app'
-import { Post } from '@models/content'
+import { Post } from '@models/post'
 import { listContentsUseCase } from '@useCases/content/listContents'
 
 import { useHomeRouter } from './home-router'
