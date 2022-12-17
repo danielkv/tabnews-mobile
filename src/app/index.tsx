@@ -1,20 +1,16 @@
-import { Stack } from 'expo-router'
+import { useEffect } from 'react'
 
 import { RouteComponent } from '@common/interfaces/routes'
-import { ListContentStrategy } from '@useCases/content/listContents'
 import { HomeView } from '@view/home/view'
 
-interface IndexRouteProps {
-    contentsListStrategy?: ListContentStrategy
-}
+const IndexRoute: RouteComponent = ({ navigation }) => {
+    useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+        // @ts-ignore
+        navigation.navigate({ name: 'auth' })
+    }, [])
 
-const IndexRoute: RouteComponent<IndexRouteProps> = ({ navigation }) => {
-    return (
-        <>
-            <Stack.Screen options={{ title: 'TabNews' }} />
-            <HomeView />
-        </>
-    )
+    return <HomeView />
 }
 
 export default IndexRoute
