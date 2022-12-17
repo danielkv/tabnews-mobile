@@ -8,7 +8,7 @@ import { colors } from '@common/theme'
 import { prepareApp } from '@utils/prepareApp'
 import { BottomBar } from '@view/BottomBar/view'
 
-const layout: React.FC = () => {
+const AppLayout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)
 
     useEffect(() => {
@@ -35,4 +35,4 @@ const layout: React.FC = () => {
     )
 }
 
-export default layout
+export default AppLayout

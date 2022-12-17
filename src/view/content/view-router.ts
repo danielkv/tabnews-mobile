@@ -9,13 +9,13 @@ export interface ContentViewRouterReturn {
 }
 
 export const useContentRouter: ViewRouterHook<ContentViewRouterReturn> = () => {
-    const link = useNavigation()
+    const navigation = useNavigation()
     const { params } = useHref()
 
     function openContent(user: string, slug: string) {
         // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
         // @ts-ignore
-        link.navigate({
+        navigation.navigate({
             name: '[user]/[slug]',
             params: { user, slug },
             key: `${user}/${slug}`,
