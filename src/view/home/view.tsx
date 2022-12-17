@@ -5,6 +5,7 @@ import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
 import { ContentListItem } from '@components/organisms/ContentListItem'
 import { Post } from '@models/post'
 import { FlashList } from '@shopify/flash-list'
+import { HeaderOptions } from '@utils/HeaderOptions'
 
 import { useHomeViewModel } from './view-model'
 
@@ -14,6 +15,7 @@ export const HomeView: React.FC = () => {
     if (loading && !contents?.length)
         return (
             <View className="mt-4">
+                <HeaderOptions title="TabNews" />
                 <ActivityIndicator size={30} />
             </View>
         )
