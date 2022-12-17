@@ -1,17 +1,17 @@
 import { ViewModelHook } from '@common/interfaces/app'
 import { ListContentStrategy } from '@useCases/content/listContents'
 
-import { useHeaderRouter } from './view-router'
+import { useBottomBarRouter } from './view-router'
 
-export interface HeaderViewModelReturn {
+export interface BottomBarViewModelReturn {
     handleBrandPress(): void
     handleRelevantPress(): void
     handleNewPress(): void
     selectedLink: ListContentStrategy | null
 }
 
-export const useHeaderViewModel: ViewModelHook<HeaderViewModelReturn> = () => {
-    const { pathname, listContentStrategy, ...router } = useHeaderRouter()
+export const useBottomBarViewModel: ViewModelHook<BottomBarViewModelReturn> = () => {
+    const { pathname, listContentStrategy, ...router } = useBottomBarRouter()
 
     const selectedLink = ['/', ''].includes(pathname) ? listContentStrategy ?? 'relevant' : null
 

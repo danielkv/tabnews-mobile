@@ -1,3 +1,5 @@
+import { Stack } from 'expo-router'
+
 import { ScrollView, View } from 'react-native'
 
 import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
@@ -15,6 +17,8 @@ const ContentView: React.FC = () => {
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+            <Stack.Screen options={{ title: content.title || 'Resposta' }} />
+
             <View>
                 <ContentLayout main onPressVote={onPressVote} content={content} />
 

@@ -1,10 +1,12 @@
-import { Children, Layout } from 'expo-router'
+import { Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 
 import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
+import { colors } from '@common/theme'
 import { prepareApp } from '@utils/prepareApp'
-import { Header } from '@view/Header/view'
+import { BottomBar } from '@view/BottomBar/view'
 
 const layout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)
@@ -16,14 +18,20 @@ const layout: React.FC = () => {
     if (!loadedApp) return null
 
     return (
-        <Layout>
-            <View className="flex-col flex-1 ">
-                <Header />
-                <View className="flex-1">
-                    <Children />
-                </View>
+        <>
+            <View className="flex-1">
+                <StatusBar translucent={true} style="inverted" />
+                <Stack
+                    screenOptions={{
+                        headerStyle: {
+                            backgroundColor: colors.gray[500],
+                        },
+                        headerTintColor: 'white',
+                    }}
+                />
             </View>
-        </Layout>
+            <BottomBar />
+        </>
     )
 }
 

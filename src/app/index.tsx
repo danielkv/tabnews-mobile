@@ -1,3 +1,5 @@
+import { Stack } from 'expo-router'
+
 import { RouteComponent } from '@common/interfaces/routes'
 import { ListContentStrategy } from '@useCases/content/listContents'
 import { HomeView } from '@view/home/view'
@@ -7,7 +9,12 @@ interface IndexRouteProps {
 }
 
 const IndexRoute: RouteComponent<IndexRouteProps> = () => {
-    return <HomeView />
+    return (
+        <>
+            <Stack.Screen options={{ title: 'TabNews' }} />
+            <HomeView />
+        </>
+    )
 }
 
 export default IndexRoute

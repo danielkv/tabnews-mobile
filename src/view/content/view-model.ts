@@ -64,7 +64,6 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
     }
 
     function onPressComment(content: ContentBase) {
-        console.log(content)
         openContent(content.owner_username, content.slug)
     }
 
