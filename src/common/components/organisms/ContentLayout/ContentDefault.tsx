@@ -36,7 +36,7 @@ export const ContentDefault: React.FC<ContentDefaultProps> = ({
             component={Pressable}
             onPress={handleOnPress}
             android_ripple={{ color: colors.gray[25] }}
-            className="flex-1 m-8"
+            className="m-8"
         >
             <View className="flex-row">
                 <TabcoinsSideWrapper

@@ -19,7 +19,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({ content, onPressVote }
     }
 
     return (
-        <View className="flex-1 m-8">
+        <View className="m-8">
             <View className="flex-row">
                 <TabcoinsSideWrapper
                     tabcoins={content.tabcoins}
