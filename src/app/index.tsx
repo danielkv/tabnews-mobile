@@ -8,7 +8,7 @@ interface IndexRouteProps {
     contentsListStrategy?: ListContentStrategy
 }
 
-const IndexRoute: RouteComponent<IndexRouteProps> = () => {
+const IndexRoute: RouteComponent<IndexRouteProps> = ({ navigation }) => {
     return (
         <>
             <Stack.Screen options={{ title: 'TabNews' }} />

@@ -1,4 +1,4 @@
-import { useHref, useLink } from 'expo-router'
+import { useHref, useNavigation } from 'expo-router'
 
 import { ViewRouterHook } from '@common/interfaces/app'
 import { ListContentStrategy } from '@useCases/content/listContents'
@@ -10,13 +10,16 @@ export interface HomeViewRouterReturn {
 }
 
 export const useHomeRouter: ViewRouterHook<HomeViewRouterReturn> = () => {
-    const link = useLink()
+    const link = useNavigation()
     const { pathname, params } = useHref()
 
     function openContent(user: string, slug: string) {
-        link.push({
-            pathname: '[user]/[slug]',
+        // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+        // @ts-ignore
+        link.navigate({
+            name: '[user]/[slug]',
             params: { user, slug },
+            key: `${user}/${slug}`,
         })
     }
 
