@@ -7,25 +7,31 @@ import { TextInput } from '@components/atoms/TextInput'
 import { Button } from '@components/molecule/Button'
 import { HeaderOptions } from '@utils/HeaderOptions'
 
-import { useLoginViewModel } from './view-model'
+import { useNewAccountViewModel } from './view-model'
 
-export const LoginView: React.FC = () => {
-    const { formValues, formErrors, onChange, onSubmit, onPressCreateNewAccount } =
-        useLoginViewModel()
+export const NewAccountView: React.FC = () => {
+    const { formValues, formErrors, onChange, onSubmit, onPressAlreadyHaveAccount } =
+        useNewAccountViewModel()
 
     return (
         <SafeAreaView>
             <View className="p-8">
-                <HeaderOptions title="Login" />
+                <HeaderOptions title="Cadastro" />
+
+                <View className="mb-8">
+                    <Label>Nome do usuário</Label>
+                    <TextInput value={formValues.email} onChangeText={onChange('username')} />
+                    <HelperText error>{formErrors?.email}</HelperText>
+                </View>
 
                 <View className="mb-8">
                     <Label>Email</Label>
                     <TextInput
-                        value={formValues.email}
+                        value={formValues.password}
                         onChangeText={onChange('email')}
                         keyboardType="email-address"
                     />
-                    <HelperText error>{formErrors?.email}</HelperText>
+                    <HelperText error>{formErrors?.password}</HelperText>
                 </View>
 
                 <View className="mb-8">
@@ -39,13 +45,12 @@ export const LoginView: React.FC = () => {
                 </View>
 
                 <View className="gap-6">
-                    <Button variant="main" onPress={onSubmit} label="Login" />
+                    <Button variant="main" onPress={onSubmit} label="Criar cadastro" />
                     <Button
-                        variant="gray"
-                        onPress={onPressCreateNewAccount}
-                        label="Crie sua conta"
+                        variant="link"
+                        onPress={onPressAlreadyHaveAccount}
+                        label="Já tenho uma conta"
                     />
-                    <Button variant="link" label="Esqueceu a senha?" />
                 </View>
             </View>
         </SafeAreaView>

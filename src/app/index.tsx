@@ -7,7 +7,7 @@ const IndexRoute: RouteComponent = ({ navigation }) => {
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
         // @ts-ignore
-        navigation.navigate({ name: 'auth' })
+        navigation.navigate({ name: 'new-account' })
     }, [])
 
     return <HomeView />

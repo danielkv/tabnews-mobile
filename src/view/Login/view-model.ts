@@ -3,12 +3,15 @@ import * as yup from 'yup'
 
 import { ViewModelHook } from '@common/interfaces/app'
 
+import { useLoginRouter } from './view-router'
+
 export interface LoginViewModelReturn {
     loading: boolean
     formErrors?: Partial<LoginForm>
     formValues: LoginForm
     onChange(fieldName: keyof LoginForm): (e: string) => void
     onSubmit(): void
+    onPressCreateNewAccount(): void
 }
 
 export interface LoginForm {
@@ -27,6 +30,8 @@ const loginInitalValues: LoginForm = {
 }
 
 export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
+    const { goToNewAccount } = useLoginRouter()
+
     const handleSubmit: FormikConfig<LoginForm>['onSubmit'] = async (result) => {
         console.log(result)
     }
@@ -47,11 +52,16 @@ export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
         handleChange(fieldName)(e)
     }
 
+    function onPressCreateNewAccount() {
+        goToNewAccount()
+    }
+
     return {
         loading: isSubmitting,
         formErrors: errors,
         formValues: values,
         onChange,
         onSubmit,
+        onPressCreateNewAccount,
     }
 }
