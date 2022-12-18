@@ -6,7 +6,7 @@ import { View } from 'react-native'
 
 import { colors } from '@common/theme'
 import { prepareApp } from '@utils/prepareApp'
-import { BottomBar } from '@view/BottomBar/view'
+import { BottomBarView } from '@view/BottomBar/view'
 import { HeaderRightView } from '@view/HeaderRight/view'
 
 const AppLayout: React.FC = () => {
@@ -37,7 +37,7 @@ const AppLayout: React.FC = () => {
                     }}
                 />
             </View>
-            <BottomBar />
+            <BottomBarView />
         </>
     )
 }

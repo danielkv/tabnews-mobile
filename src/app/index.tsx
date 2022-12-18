@@ -1,5 +1,5 @@
 import { RouteComponent } from '@common/interfaces/routes'
-import { HomeView } from '@view/home/view'
+import { HomeView } from '@view/Home/view'
 
 const IndexRoute: RouteComponent = () => {
     return <HomeView />

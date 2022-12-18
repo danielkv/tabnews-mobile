@@ -5,7 +5,7 @@ import { HeaderLink } from '@components/molecule/HeaderLink'
 
 import { useBottomBarViewModel } from './view-model'
 
-export const BottomBar: React.FC = () => {
+export const BottomBarView: React.FC = () => {
     const height = 60
 
     const { handleBrandPress, handleNewPress, handleRelevantPress, selectedLink } =
