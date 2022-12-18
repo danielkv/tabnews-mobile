@@ -9,7 +9,7 @@ export interface AnswerBoxProps {
 export const AnswerBox: React.FC<AnswerBoxProps> = ({ contentId }) => {
     return (
         <View>
-            <Button label="Responder" />
+            <Button children="Responder" />
         </View>
     )
 }

@@ -45,11 +45,11 @@ export const NewAccountView: React.FC = () => {
                 </View>
 
                 <View className="gap-6">
-                    <Button variant="main" onPress={onSubmit} label="Criar cadastro" />
+                    <Button variant="main" onPress={onSubmit} children="Criar cadastro" />
                     <Button
                         variant="link"
                         onPress={onPressAlreadyHaveAccount}
-                        label="Já tenho uma conta"
+                        children="Já tenho uma conta"
                     />
                 </View>
             </View>

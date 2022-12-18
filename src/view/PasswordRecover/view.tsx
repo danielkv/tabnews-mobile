@@ -25,11 +25,11 @@ export const PasswordRecoverView: React.FC = () => {
                 </View>
 
                 <View className="gap-6">
-                    <Button variant="main" onPress={onSubmit} label="Recuperar" />
+                    <Button variant="main" onPress={onSubmit} children="Recuperar" />
                     <Button
                         variant="link"
                         onPress={onPressAlreadyHaveAccount}
-                        label="Fazer login"
+                        children="Fazer login"
                     />
                 </View>
             </View>

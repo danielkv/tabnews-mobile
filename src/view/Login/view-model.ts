@@ -1,14 +1,15 @@
 import { FormikConfig, useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { ViewModelHook } from '@common/interfaces/app'
+import { Alert } from 'react-native'
+
+import { ViewModelFormReturn, ViewModelHook } from '@common/interfaces/app'
+import { logUserInUseCase } from '@useCases/user/logUserIn'
+import { getExceptionMessage } from '@utils/exceptions'
 
 import { useLoginRouter } from './view-router'
 
-export interface LoginViewModelReturn {
-    loading: boolean
-    formErrors?: Partial<LoginForm>
-    formValues: LoginForm
+export interface LoginViewModelReturn extends ViewModelFormReturn<LoginForm> {
     onChange(fieldName: keyof LoginForm): (e: string) => void
     onSubmit(): void
     onPressCreateNewAccount(): void
@@ -31,10 +32,15 @@ const loginInitalValues: LoginForm = {
 }
 
 export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
-    const { goToNewAccount, goToPasswordRecover } = useLoginRouter()
+    const { goToNewAccount, goToPasswordRecover, goToHome } = useLoginRouter()
 
     const handleSubmit: FormikConfig<LoginForm>['onSubmit'] = async (result) => {
-        console.log(result)
+        try {
+            await logUserInUseCase(result.email, result.password)
+            goToHome()
+        } catch (err) {
+            Alert.alert(getExceptionMessage(err))
+        }
     }
 
     const {
@@ -64,6 +70,7 @@ export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
         loading: isSubmitting,
         formErrors: errors,
         formValues: values,
+        formDisabled: isSubmitting,
         onChange,
         onSubmit,
         onPressCreateNewAccount,

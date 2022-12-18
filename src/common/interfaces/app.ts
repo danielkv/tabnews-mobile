@@ -5,3 +5,10 @@ type Hook<ReturnType, Props> = Props extends undefined
 export type ViewModelHook<ReturnType = void, Props = undefined> = Hook<ReturnType, Props>
 
 export type ViewRouterHook<ReturnType = void, Props = undefined> = Hook<ReturnType, Props>
+
+export interface ViewModelFormReturn<FormFields extends Record<string, any>> {
+    loading: boolean
+    formErrors?: Partial<FormFields>
+    formValues: FormFields
+    formDisabled: boolean
+}

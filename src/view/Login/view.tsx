@@ -1,6 +1,7 @@
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
 import { HelperText } from '@components/atoms/HelperText'
 import { Label } from '@components/atoms/Label'
 import { TextInput } from '@components/atoms/TextInput'
@@ -13,6 +14,8 @@ export const LoginView: React.FC = () => {
     const {
         formValues,
         formErrors,
+        loading,
+        formDisabled,
         onChange,
         onSubmit,
         onPressCreateNewAccount,
@@ -27,6 +30,7 @@ export const LoginView: React.FC = () => {
                 <View className="mb-8">
                     <Label>Email</Label>
                     <TextInput
+                        disabled={formDisabled}
                         value={formValues.email}
                         onChangeText={onChange('email')}
                         keyboardType="email-address"
@@ -37,6 +41,7 @@ export const LoginView: React.FC = () => {
                 <View className="mb-8">
                     <Label>Senha</Label>
                     <TextInput
+                        disabled={formDisabled}
                         value={formValues.password}
                         onChangeText={onChange('password')}
                         secureTextEntry
@@ -45,17 +50,19 @@ export const LoginView: React.FC = () => {
                 </View>
 
                 <View className="gap-6">
-                    <Button variant="main" onPress={onSubmit} label="Login" />
+                    <Button disabled={formDisabled} variant="main" onPress={onSubmit}>
+                        {loading ? <ActivityIndicator color="white" /> : 'Login'}
+                    </Button>
                     <Button
+                        disabled={formDisabled}
                         variant="gray"
                         onPress={onPressCreateNewAccount}
-                        label="Crie sua conta"
-                    />
-                    <Button
-                        variant="link"
-                        onPress={onPressPasswordRecover}
-                        label="Esqueceu a senha?"
-                    />
+                    >
+                        Crie sua conta
+                    </Button>
+                    <Button disabled={formDisabled} variant="link" onPress={onPressPasswordRecover}>
+                        Esqueceu a senha?
+                    </Button>
                 </View>
             </View>
         </SafeAreaView>
