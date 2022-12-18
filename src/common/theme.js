@@ -1,6 +1,13 @@
 const colors = {
     white: '#ffffff',
     black: '#000000',
+    yellow: {
+        100: '#FFF79C',
+        300: '#FFE84E',
+        500: '#FED200',
+        700: '#A48D1D',
+        900: '#5D5328',
+    },
     red: {
         100: '#ED9CA8',
         300: '#D65169',

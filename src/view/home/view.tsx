@@ -7,10 +7,11 @@ import { Post } from '@models/post'
 import { FlashList } from '@shopify/flash-list'
 import { HeaderOptions } from '@utils/HeaderOptions'
 
+import { ErrorBox } from './../../common/components/molecule/Error/index'
 import { useHomeViewModel } from './view-model'
 
 export const HomeView: React.FC = () => {
-    const { contents, loading, loadNextPage, handleContentPress } = useHomeViewModel()
+    const { contents, loading, loadNextPage, handleContentPress, error } = useHomeViewModel()
 
     if (loading && !contents?.length)
         return (
@@ -19,6 +20,10 @@ export const HomeView: React.FC = () => {
                 <ActivityIndicator size={30} />
             </View>
         )
+
+    if (error) return <ErrorBox error={error} />
+
+    if (!contents?.length) return <ErrorBox type="alert" error={'Nenhum conteúdo carregado'} />
 
     return (
         <FlashList<Post>
