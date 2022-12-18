@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { Alert } from 'react-native'
 
 import { ViewModelFormReturn, ViewModelHook } from '@common/interfaces/app'
-import { logUserInUseCase } from '@useCases/user/logUserIn'
+import { logUserInUseCase } from '@useCases/sessions/logUserIn'
 import { getExceptionMessage } from '@utils/exceptions'
 
 import { useLoginRouter } from './view-router'

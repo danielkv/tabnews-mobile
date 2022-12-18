@@ -1,7 +1,7 @@
 import { ViewModelHook } from '@common/interfaces/app'
 import { useLoggedUser } from '@contexts/user/userContext'
 import { User } from '@models/user'
-import { logUserOutUseCase } from '@useCases/user/logUserOut'
+import { logUserOutUseCase } from '@useCases/sessions/logUserOut'
 
 import { useHeaderRightRouter } from './view-router'
 
