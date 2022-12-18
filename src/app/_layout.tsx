@@ -27,6 +27,9 @@ const AppLayout: React.FC = () => {
                             backgroundColor: colors.gray[500],
                         },
                         headerTintColor: 'white',
+                        contentStyle: {
+                            backgroundColor: '#fff',
+                        },
                     }}
                 />
             </View>
