@@ -4,7 +4,7 @@ import { ViewModelHook } from '@common/interfaces/app'
 import { Post } from '@models/post'
 import { listContentsUseCase } from '@useCases/content/listContents'
 
-import { useHomeRouter } from './home-router'
+import { useHomeRouter } from './view-router'
 
 export interface HomeViewModelReturn {
     loading: boolean
