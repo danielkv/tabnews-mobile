@@ -7,6 +7,7 @@ import { View } from 'react-native'
 import { colors } from '@common/theme'
 import { prepareApp } from '@utils/prepareApp'
 import { BottomBar } from '@view/BottomBar/view'
+import { HeaderRightView } from '@view/HeaderRight/view'
 
 const AppLayout: React.FC = () => {
     const [loadedApp, setLoadedApp] = useState(false)
@@ -27,9 +28,12 @@ const AppLayout: React.FC = () => {
                             backgroundColor: colors.gray[500],
                         },
                         headerTintColor: 'white',
+                        headerTitleStyle: { fontSize: 16 },
+
                         contentStyle: {
                             backgroundColor: '#fff',
                         },
+                        headerRight: () => <HeaderRightView />,
                     }}
                 />
             </View>
