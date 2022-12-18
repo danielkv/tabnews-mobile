@@ -1,14 +1,15 @@
 import { FormikConfig, useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { ViewModelHook } from '@common/interfaces/app'
+import { Alert } from 'react-native'
+
+import { ViewModelFormReturn, ViewModelHook } from '@common/interfaces/app'
+import { recoverPasswordUseCase } from '@useCases/users/recoverPassword'
+import { getExceptionMessage } from '@utils/exceptions'
 
 import { usePassworRecoverRouter } from './view-router'
 
-export interface PasswordRecoverViewModelReturn {
-    loading: boolean
-    formErrors?: Partial<NewAccountForm>
-    formValues: NewAccountForm
+export interface PasswordRecoverViewModelReturn extends ViewModelFormReturn<NewAccountForm> {
     onChange(fieldName: keyof NewAccountForm): (e: string) => void
     onSubmit(): void
     onPressAlreadyHaveAccount(): void
@@ -19,7 +20,7 @@ export interface NewAccountForm {
 }
 
 const validation = yup.object().shape({
-    email: yup.string().required('Campo email é obrigatório'),
+    email: yup.string().email().required('Campo email é obrigatório'),
 })
 
 const initalValues: NewAccountForm = {
@@ -27,10 +28,22 @@ const initalValues: NewAccountForm = {
 }
 
 export const usePasswordRecoverViewModel: ViewModelHook<PasswordRecoverViewModelReturn> = () => {
-    const { goToLogin } = usePassworRecoverRouter()
+    const { goToHome, goToLogin } = usePassworRecoverRouter()
 
     const handleSubmit: FormikConfig<NewAccountForm>['onSubmit'] = async (result) => {
-        console.log(result)
+        try {
+            await recoverPasswordUseCase(result.email)
+            Alert.alert(
+                'Confira seu e-mail',
+                'Você receberá um link para definir uma nova senha.',
+                [{ onPress: goToHome }],
+                {
+                    onDismiss: goToHome,
+                }
+            )
+        } catch (err) {
+            Alert.alert('Ocorreu um erro', getExceptionMessage(err))
+        }
     }
 
     const {
@@ -57,6 +70,7 @@ export const usePasswordRecoverViewModel: ViewModelHook<PasswordRecoverViewModel
         loading: isSubmitting,
         formErrors: errors,
         formValues: values,
+        formDisabled: isSubmitting,
         onChange,
         onSubmit,
         onPressAlreadyHaveAccount,

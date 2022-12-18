@@ -39,7 +39,7 @@ export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
             await logUserInUseCase(result.email, result.password)
             goToHome()
         } catch (err) {
-            Alert.alert(getExceptionMessage(err))
+            Alert.alert('Ocorreu um erro', getExceptionMessage(err))
         }
     }
 

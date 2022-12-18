@@ -42,7 +42,7 @@ export const useNewAccountViewModel: ViewModelHook<NewAccountViewModelReturn> = 
             Alert.alert(
                 'Sua conta foi criada',
                 'Verifique seu email para confirmar sua conta.',
-                undefined,
+                [{ onPress: goToLogin }],
                 {
                     onDismiss: goToLogin,
                 }
