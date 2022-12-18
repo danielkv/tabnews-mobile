@@ -1,6 +1,7 @@
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { ActivityIndicator } from '@components/atoms/ActivityIndicator'
 import { HelperText } from '@components/atoms/HelperText'
 import { Label } from '@components/atoms/Label'
 import { TextInput } from '@components/atoms/TextInput'
@@ -10,8 +11,15 @@ import { HeaderOptions } from '@utils/HeaderOptions'
 import { useNewAccountViewModel } from './view-model'
 
 export const NewAccountView: React.FC = () => {
-    const { formValues, formErrors, onChange, onSubmit, onPressAlreadyHaveAccount, formDisabled } =
-        useNewAccountViewModel()
+    const {
+        formValues,
+        formErrors,
+        loading,
+        formDisabled,
+        onChange,
+        onSubmit,
+        onPressAlreadyHaveAccount,
+    } = useNewAccountViewModel()
 
     return (
         <SafeAreaView>
@@ -52,7 +60,7 @@ export const NewAccountView: React.FC = () => {
 
                 <View className="gap-6">
                     <Button disabled={formDisabled} variant="main" onPress={onSubmit}>
-                        Criar cadastro
+                        {loading ? <ActivityIndicator color="white" /> : 'Criar cadastro'}
                     </Button>
                     <Button
                         disabled={formDisabled}
