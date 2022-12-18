@@ -1,6 +1,9 @@
 import useSWR from 'swr'
 
+import { Alert } from 'react-native'
+
 import { ViewModelHook } from '@common/interfaces/app'
+import { useIsUserLoggedIn } from '@contexts/user/userContext'
 import { Comment } from '@models/comment'
 import { ContentBase } from '@models/contentBase'
 import { Post } from '@models/post'
@@ -21,7 +24,8 @@ export interface ContentViewModelReturn {
 }
 
 export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => {
-    const { user, slug, openContent } = useContentRouter()
+    const { user, slug, goToContent, goToLogin } = useContentRouter()
+    const isLoggedIn = useIsUserLoggedIn()
 
     const {
         data: content,
@@ -37,7 +41,16 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
         mutate: mutateComments,
     } = useSWR<Comment[], Error>([user, slug, 'children'], getCommentsUseCase)
 
+    function notLoggedAction() {
+        Alert.alert('Você não está logado', 'Deseja ir para o login?', [
+            { text: 'Sim', onPress: goToLogin },
+            { text: 'Não, continuar aqui' },
+        ])
+    }
+
     async function onPressVote(type: ContentVoteType, author: string, slug: string) {
+        if (!isLoggedIn) return notLoggedAction()
+
         const response = await contentVote(type, author, slug)
 
         mutateContent(
@@ -64,7 +77,7 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
     }
 
     function onPressComment(content: ContentBase) {
-        openContent(content.owner_username, content.slug)
+        goToContent(content.owner_username, content.slug)
     }
 
     return {
