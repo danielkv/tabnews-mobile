@@ -1,14 +1,15 @@
 import { FormikConfig, useFormik } from 'formik'
 import * as yup from 'yup'
 
-import { ViewModelHook } from '@common/interfaces/app'
+import { Alert } from 'react-native'
+
+import { ViewModelFormReturn, ViewModelHook } from '@common/interfaces/app'
+import { createNewAccountUseCase } from '@useCases/users/createNewAccount'
+import { getExceptionMessage } from '@utils/exceptions'
 
 import { useNewAccountRouter } from './view-router'
 
-export interface NewAccountViewModelReturn {
-    loading: boolean
-    formErrors?: Partial<NewAccountForm>
-    formValues: NewAccountForm
+export interface NewAccountViewModelReturn extends ViewModelFormReturn<NewAccountForm> {
     onChange(fieldName: keyof NewAccountForm): (e: string) => void
     onSubmit(): void
     onPressAlreadyHaveAccount(): void
@@ -36,7 +37,19 @@ export const useNewAccountViewModel: ViewModelHook<NewAccountViewModelReturn> = 
     const { goToLogin } = useNewAccountRouter()
 
     const handleSubmit: FormikConfig<NewAccountForm>['onSubmit'] = async (result) => {
-        console.log(result)
+        try {
+            await createNewAccountUseCase(result)
+            Alert.alert(
+                'Sua conta foi criada',
+                'Verifique seu email para confirmar sua conta.',
+                undefined,
+                {
+                    onDismiss: goToLogin,
+                }
+            )
+        } catch (err) {
+            Alert.alert('Ocorreu um erro', getExceptionMessage(err))
+        }
     }
 
     const {
@@ -63,6 +76,7 @@ export const useNewAccountViewModel: ViewModelHook<NewAccountViewModelReturn> = 
         loading: isSubmitting,
         formErrors: errors,
         formValues: values,
+        formDisabled: isSubmitting,
         onChange,
         onSubmit,
         onPressAlreadyHaveAccount,

@@ -10,7 +10,7 @@ import { HeaderOptions } from '@utils/HeaderOptions'
 import { useNewAccountViewModel } from './view-model'
 
 export const NewAccountView: React.FC = () => {
-    const { formValues, formErrors, onChange, onSubmit, onPressAlreadyHaveAccount } =
+    const { formValues, formErrors, onChange, onSubmit, onPressAlreadyHaveAccount, formDisabled } =
         useNewAccountViewModel()
 
     return (
@@ -20,13 +20,18 @@ export const NewAccountView: React.FC = () => {
 
                 <View className="mb-8">
                     <Label>Nome do usuário</Label>
-                    <TextInput value={formValues.username} onChangeText={onChange('username')} />
+                    <TextInput
+                        disabled={formDisabled}
+                        value={formValues.username}
+                        onChangeText={onChange('username')}
+                    />
                     <HelperText error>{formErrors?.username}</HelperText>
                 </View>
 
                 <View className="mb-8">
                     <Label>Email</Label>
                     <TextInput
+                        disabled={formDisabled}
                         value={formValues.email}
                         onChangeText={onChange('email')}
                         keyboardType="email-address"
@@ -37,6 +42,7 @@ export const NewAccountView: React.FC = () => {
                 <View className="mb-8">
                     <Label>Senha</Label>
                     <TextInput
+                        disabled={formDisabled}
                         value={formValues.password}
                         onChangeText={onChange('password')}
                         secureTextEntry
@@ -45,12 +51,16 @@ export const NewAccountView: React.FC = () => {
                 </View>
 
                 <View className="gap-6">
-                    <Button variant="main" onPress={onSubmit} children="Criar cadastro" />
+                    <Button disabled={formDisabled} variant="main" onPress={onSubmit}>
+                        Criar cadastro
+                    </Button>
                     <Button
+                        disabled={formDisabled}
                         variant="link"
                         onPress={onPressAlreadyHaveAccount}
-                        children="Já tenho uma conta"
-                    />
+                    >
+                        Já tenho uma conta
+                    </Button>
                 </View>
             </View>
         </SafeAreaView>
