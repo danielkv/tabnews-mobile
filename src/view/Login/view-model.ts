@@ -12,6 +12,7 @@ export interface LoginViewModelReturn {
     onChange(fieldName: keyof LoginForm): (e: string) => void
     onSubmit(): void
     onPressCreateNewAccount(): void
+    onPressPasswordRecover(): void
 }
 
 export interface LoginForm {
@@ -30,7 +31,7 @@ const loginInitalValues: LoginForm = {
 }
 
 export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
-    const { goToNewAccount } = useLoginRouter()
+    const { goToNewAccount, goToPasswordRecover } = useLoginRouter()
 
     const handleSubmit: FormikConfig<LoginForm>['onSubmit'] = async (result) => {
         console.log(result)
@@ -55,6 +56,9 @@ export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
     function onPressCreateNewAccount() {
         goToNewAccount()
     }
+    function onPressPasswordRecover() {
+        goToPasswordRecover()
+    }
 
     return {
         loading: isSubmitting,
@@ -63,5 +67,6 @@ export const useLoginViewModel: ViewModelHook<LoginViewModelReturn> = () => {
         onChange,
         onSubmit,
         onPressCreateNewAccount,
+        onPressPasswordRecover,
     }
 }

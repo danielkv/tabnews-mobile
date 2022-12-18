@@ -4,6 +4,7 @@ import { ViewRouterHook } from '@common/interfaces/app'
 
 export interface LoginViewRouterReturn {
     goToNewAccount(): void
+    goToPasswordRecover(): void
 }
 
 export const useLoginRouter: ViewRouterHook<LoginViewRouterReturn> = () => {
@@ -13,7 +14,12 @@ export const useLoginRouter: ViewRouterHook<LoginViewRouterReturn> = () => {
         link.replace('new-account')
     }
 
+    function goToPasswordRecover() {
+        link.replace('password-recover')
+    }
+
     return {
         goToNewAccount,
+        goToPasswordRecover,
     }
 }

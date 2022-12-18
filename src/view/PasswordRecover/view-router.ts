@@ -6,7 +6,7 @@ export interface NewAccountViewRouterReturn {
     goToLogin(): void
 }
 
-export const useNewAccountRouter: ViewRouterHook<NewAccountViewRouterReturn> = () => {
+export const usePassworRecoverRouter: ViewRouterHook<NewAccountViewRouterReturn> = () => {
     const link = useLink()
 
     function goToLogin() {

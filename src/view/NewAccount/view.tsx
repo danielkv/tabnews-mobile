@@ -20,18 +20,18 @@ export const NewAccountView: React.FC = () => {
 
                 <View className="mb-8">
                     <Label>Nome do usuário</Label>
-                    <TextInput value={formValues.email} onChangeText={onChange('username')} />
-                    <HelperText error>{formErrors?.email}</HelperText>
+                    <TextInput value={formValues.username} onChangeText={onChange('username')} />
+                    <HelperText error>{formErrors?.username}</HelperText>
                 </View>
 
                 <View className="mb-8">
                     <Label>Email</Label>
                     <TextInput
-                        value={formValues.password}
+                        value={formValues.email}
                         onChangeText={onChange('email')}
                         keyboardType="email-address"
                     />
-                    <HelperText error>{formErrors?.password}</HelperText>
+                    <HelperText error>{formErrors?.email}</HelperText>
                 </View>
 
                 <View className="mb-8">

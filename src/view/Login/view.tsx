@@ -10,8 +10,14 @@ import { HeaderOptions } from '@utils/HeaderOptions'
 import { useLoginViewModel } from './view-model'
 
 export const LoginView: React.FC = () => {
-    const { formValues, formErrors, onChange, onSubmit, onPressCreateNewAccount } =
-        useLoginViewModel()
+    const {
+        formValues,
+        formErrors,
+        onChange,
+        onSubmit,
+        onPressCreateNewAccount,
+        onPressPasswordRecover,
+    } = useLoginViewModel()
 
     return (
         <SafeAreaView>
@@ -45,7 +51,11 @@ export const LoginView: React.FC = () => {
                         onPress={onPressCreateNewAccount}
                         label="Crie sua conta"
                     />
-                    <Button variant="link" label="Esqueceu a senha?" />
+                    <Button
+                        variant="link"
+                        onPress={onPressPasswordRecover}
+                        label="Esqueceu a senha?"
+                    />
                 </View>
             </View>
         </SafeAreaView>
