@@ -8,7 +8,15 @@ import { HeaderOptions } from '@utils/HeaderOptions'
 import { useContentViewModel } from './view-model'
 
 const ContentView: React.FC = () => {
-    const { content, loading, onPressVote, comments, onPressComment } = useContentViewModel()
+    const {
+        content,
+        loading,
+        comments,
+        onPressVote,
+        onPressComment,
+        onPressAnswer,
+        onPressVoteComment,
+    } = useContentViewModel()
 
     if (!content && loading) return <ActivityIndicator />
 
@@ -19,14 +27,19 @@ const ContentView: React.FC = () => {
             <HeaderOptions title={content.title || 'Resposta'} />
 
             <View>
-                <ContentLayout main onPressVote={onPressVote} content={content} />
+                <ContentLayout
+                    main
+                    onPressAnswer={onPressAnswer}
+                    onPressVote={onPressVote}
+                    content={content}
+                />
 
                 <View>
                     {comments.map((comment) => (
                         <ContentLayout
                             key={comment.id}
                             content={comment}
-                            onPressVote={async () => {}}
+                            onPressVote={onPressVoteComment}
                             onPress={onPressComment}
                         />
                     ))}

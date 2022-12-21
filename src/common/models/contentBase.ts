@@ -4,7 +4,7 @@ export interface ContentBase {
     id: string
     owner_id: string
     owner_username: string
-    parent_id: null
+    parent_id: string | null
     slug: string
     title: string | null
     status: ContentStatus

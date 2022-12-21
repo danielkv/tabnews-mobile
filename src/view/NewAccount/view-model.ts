@@ -10,8 +10,6 @@ import { getExceptionMessage } from '@utils/exceptions'
 import { useNewAccountRouter } from './view-router'
 
 export interface NewAccountViewModelReturn extends ViewModelFormReturn<NewAccountForm> {
-    onChange(fieldName: keyof NewAccountForm): (e: string) => void
-    onSubmit(): void
     onPressAlreadyHaveAccount(): void
 }
 

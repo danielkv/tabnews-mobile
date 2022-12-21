@@ -1,3 +1,4 @@
+import { UnauthorizedException } from '@common/exceptions/UnauthorizedException'
 import { IApiException } from '@models/exception'
 
 export function isApiException(data: any): data is IApiException {
@@ -13,6 +14,12 @@ export function isApiException(data: any): data is IApiException {
         data.error_location_code
     )
         return true
+    return false
+}
+
+export function isUnauthorizedException(data: any): data is UnauthorizedException {
+    if (data instanceof UnauthorizedException) return true
+
     return false
 }
 

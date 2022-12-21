@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Constants from 'expo-constants'
 
-import { ApiException } from '@common/apiExeption'
+import { ApiException } from '@common/exceptions/apiExeption'
 import { useUserContext } from '@contexts/user/userContext'
 
 import { isApiException } from './exceptions'
@@ -14,12 +14,14 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use((config) => {
     const userSession = useUserContext.getState().userSession
+
     if (userSession && config?.headers) config.headers.session_id = userSession.id
 
     return config
 })
 
 httpClient.interceptors.response.use(null, (error) => {
+    console.log(error)
     if (isApiException(error?.response?.data)) {
         throw new ApiException(error.response.data)
     }

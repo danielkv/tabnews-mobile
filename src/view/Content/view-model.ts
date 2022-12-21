@@ -10,6 +10,7 @@ import { Post } from '@models/post'
 import { ContentVoteType, contentVote } from '@useCases/content/contentVote'
 import { getCommentsUseCase } from '@useCases/content/getComments'
 import { getContentUseCase } from '@useCases/content/getContent'
+import { getExceptionMessage } from '@utils/exceptions'
 
 import { useContentRouter } from './view-router'
 
@@ -21,10 +22,11 @@ export interface ContentViewModelReturn {
     onPressVote(type: ContentVoteType, author: string, slug: string): Promise<void>
     onPressVoteComment(type: ContentVoteType, author: string, slug: string): Promise<void>
     onPressComment(content: ContentBase): void
+    onPressAnswer(content: ContentBase): void
 }
 
 export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => {
-    const { user, slug, goToContent, goToLogin } = useContentRouter()
+    const { user, slug, goToContent, goToLogin, goToCreateContent } = useContentRouter()
     const isLoggedIn = useIsUserLoggedIn()
 
     const {
@@ -41,43 +43,59 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
         mutate: mutateComments,
     } = useSWR<Comment[], Error>([user, slug, 'children'], getCommentsUseCase)
 
-    function notLoggedAction() {
+    function _displayUnauthorizedAlert() {
         Alert.alert('Você não está logado', 'Deseja ir para o login?', [
-            { text: 'Sim', onPress: goToLogin },
             { text: 'Não, continuar aqui' },
+            { text: 'Sim', onPress: goToLogin },
         ])
     }
 
     async function onPressVote(type: ContentVoteType, author: string, slug: string) {
-        if (!isLoggedIn) return notLoggedAction()
+        if (!isLoggedIn) return _displayUnauthorizedAlert()
 
-        const response = await contentVote(type, author, slug)
+        try {
+            const response = await contentVote(type, author, slug)
 
-        mutateContent(
-            (currentData) => {
-                if (!currentData) return currentData
+            mutateContent(
+                (currentData) => {
+                    if (!currentData) return currentData
 
-                return { ...currentData, tabcoins: response.tabcoins }
-            },
-            { rollbackOnError: true }
-        )
+                    return { ...currentData, tabcoins: response.tabcoins }
+                },
+                { rollbackOnError: true }
+            )
+        } catch (err) {
+            Alert.alert('Ocorreu um erro', getExceptionMessage(err))
+        }
     }
 
     async function onPressVoteComment(type: ContentVoteType, author: string, slug: string) {
-        const response = await contentVote(type, author, slug)
+        if (!isLoggedIn) return _displayUnauthorizedAlert()
 
-        mutateComments(
-            (currentData) => {
-                if (!currentData) return currentData
+        try {
+            const response = await contentVote(type, author, slug)
 
-                return { ...currentData, tabcoins: response.tabcoins }
-            },
-            { rollbackOnError: true }
-        )
+            mutateComments(
+                (currentData) => {
+                    if (!currentData) return currentData
+
+                    return { ...currentData, tabcoins: response.tabcoins }
+                },
+                { rollbackOnError: true }
+            )
+        } catch (err) {
+            Alert.alert('Ocorreu um erro', getExceptionMessage(err))
+        }
     }
 
     function onPressComment(content: ContentBase) {
         goToContent(content.owner_username, content.slug)
+    }
+
+    function onPressAnswer(content: ContentBase) {
+        if (!isLoggedIn) return _displayUnauthorizedAlert()
+
+        goToCreateContent(content.id)
     }
 
     return {
@@ -88,5 +106,6 @@ export const useContentViewModel: ViewModelHook<ContentViewModelReturn> = () => 
         onPressVoteComment,
         onPressVote,
         onPressComment,
+        onPressAnswer,
     }
 }

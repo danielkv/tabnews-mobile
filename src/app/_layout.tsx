@@ -33,6 +33,7 @@ const AppLayout: React.FC = () => {
                         contentStyle: {
                             backgroundColor: '#fff',
                         },
+
                         headerRight: () => <HeaderRightView />,
                     }}
                 />

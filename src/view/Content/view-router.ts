@@ -7,6 +7,7 @@ export interface ContentViewRouterReturn {
     slug: string
     goToLogin(): void
     goToContent(user: string, slug: string): void
+    goToCreateContent(parentId?: string): void
 }
 
 export const useContentRouter: ViewRouterHook<ContentViewRouterReturn> = () => {
@@ -28,6 +29,10 @@ export const useContentRouter: ViewRouterHook<ContentViewRouterReturn> = () => {
         link.push('login')
     }
 
+    function goToCreateContent(parentId?: string) {
+        link.push({ pathname: 'create-content', params: { parentId } })
+    }
+
     const { user = '', slug = '' } = params
 
     return {
@@ -35,5 +40,6 @@ export const useContentRouter: ViewRouterHook<ContentViewRouterReturn> = () => {
         slug,
         goToLogin,
         goToContent,
+        goToCreateContent,
     }
 }

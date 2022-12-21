@@ -11,4 +11,7 @@ export interface ViewModelFormReturn<FormFields extends Record<string, any>> {
     formErrors?: Partial<FormFields>
     formValues: FormFields
     formDisabled: boolean
+    onChange(fieldName: keyof FormFields): (e: string) => void
+    onSubmit(): void
+    onCancel?(): void
 }
