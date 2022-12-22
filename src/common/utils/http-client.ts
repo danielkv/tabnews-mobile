@@ -21,7 +21,6 @@ httpClient.interceptors.request.use((config) => {
 })
 
 httpClient.interceptors.response.use(null, (error) => {
-    console.log(error)
     if (isApiException(error?.response?.data)) {
         throw new ApiException(error.response.data)
     }

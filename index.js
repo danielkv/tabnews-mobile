@@ -7,6 +7,8 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { registerRootComponent } from 'expo'
 import { ExpoRoot } from 'expo-router'
 
+import 'react-native-get-random-values'
+
 dayjs.extend(relativeTime)
 dayjs.locale('pt-br')
 

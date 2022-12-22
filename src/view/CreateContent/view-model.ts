@@ -55,7 +55,6 @@ export const useCreateContentViewModel: ViewModelHook<CreateContentViewModelRetu
             ...data,
             source_url: data.source_url || null,
             parent_id: parentId,
-            slug: 'asasd-asdad',
         }
 
         if (parentId) {

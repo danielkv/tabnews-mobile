@@ -15,11 +15,11 @@ const AppLayout: React.FC = () => {
 
     useEffect(() => {
         prepareApp()
-            .then(() => setLoadedApp(true))
             .catch((err) => {
                 Alert.alert('Ocorreu um erro', getExceptionMessage(err))
             })
-    })
+            .finally(() => setLoadedApp(true))
+    }, [])
 
     if (!loadedApp) return null
 
