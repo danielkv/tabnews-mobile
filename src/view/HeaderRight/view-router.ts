@@ -4,6 +4,7 @@ import { ViewRouterHook } from '@common/interfaces/app'
 
 export interface HeaderRightViewRouterReturn {
     goToLogin(): void
+    goToProfile(): void
 }
 
 export const useHeaderRightRouter: ViewRouterHook<HeaderRightViewRouterReturn> = () => {
@@ -13,7 +14,12 @@ export const useHeaderRightRouter: ViewRouterHook<HeaderRightViewRouterReturn> =
         link.push('login')
     }
 
+    function goToProfile() {
+        link.push('profile')
+    }
+
     return {
         goToLogin,
+        goToProfile,
     }
 }
