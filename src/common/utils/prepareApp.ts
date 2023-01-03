@@ -20,7 +20,7 @@ function loadFonts() {
 
 async function loadLoggedUser() {
     const userSessionString = await AsyncStorage.getItem(
-        Constants.expoConfig?.extra?.STORAGE_USER_SESSION_KEY
+        Constants.expoConfig?.extra?.STORAGE_USER_SESSION_KEY || ''
     )
     if (!userSessionString) return
 

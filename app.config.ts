@@ -13,19 +13,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     splash: {
         image: './assets/splash.png',
         resizeMode: 'contain',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#24292F',
     },
     updates: {
         fallbackToCacheTimeout: 0,
+        url: 'https://u.expo.dev/5e86c1a4-900c-4826-b9ff-824c66002433',
+    },
+    runtimeVersion: {
+        policy: 'sdkVersion',
     },
     assetBundlePatterns: ['**/*'],
     ios: {
         supportsTablet: true,
     },
     android: {
+        package: 'com.tabnews.mobile',
         adaptiveIcon: {
             foregroundImage: './assets/adaptive-icon.png',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#24292F',
         },
     },
     web: {
@@ -33,5 +38,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     extra: {
         ...process.env,
+        eas: {
+            projectId: '5e86c1a4-900c-4826-b9ff-824c66002433',
+        },
     },
 })

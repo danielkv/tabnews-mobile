@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 3.1.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "API_BASE_URL": "https://www.tabnews.com.br/api/v1",
+        "STORAGE_USER_SESSION_KEY": "@USER_SESSION_DEV"
+      },
+      "channel": "development"
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "API_BASE_URL": "https://www.tabnews.com.br/api/v1",
+        "STORAGE_USER_SESSION_KEY": "@USER_SESSION_PRE"
+      },
+      "channel": "preview"
+    },
+    "production": {
+      "env": {
+        "API_BASE_URL": "https://www.tabnews.com.br/api/v1",
+        "STORAGE_USER_SESSION_KEY": "@USER_SESSION"
+      },
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

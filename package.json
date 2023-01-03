@@ -22,6 +22,7 @@
 		"expo-router": "^0.0.36",
 		"expo-splash-screen": "~0.17.5",
 		"expo-status-bar": "~1.4.2",
+		"expo-updates": "~0.15.6",
 		"formik": "^2.2.9",
 		"nativewind": "^2.0.11",
 		"radash": "^10.1.0",

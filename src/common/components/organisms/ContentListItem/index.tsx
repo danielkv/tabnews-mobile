@@ -21,7 +21,7 @@ const RawContentListItem: React.FC<StyledProps<ContenteItemProps>> = ({
     onPress,
     ...rest
 }) => {
-    const titleClassName = 'font-bold text-sm'
+    const titleClassName = 'font-bold text-md'
 
     function handlePress() {
         onPress?.(content)
